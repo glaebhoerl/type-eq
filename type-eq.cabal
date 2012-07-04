@@ -1,6 +1,6 @@
 name:          type-eq
 category:      Type System
-version:       0.1
+version:       0.1.2
 author:        Gábor Lehel
 maintainer:    Gábor Lehel <illissius@gmail.com>
 homepage:      http://github.com/glehel/type-eq
@@ -12,7 +12,9 @@ cabal-version: >= 1.10
 build-type:    Simple
 synopsis:      Type equality evidence you can carry around
 description:
-    To take advantage of kind-polymorphism when it is available but not require it, this library is split into the following primary modules:
+    This package provides types and combinators to store and manipulate evidence of equality between types.
+    .
+    To take advantage of kind-polymorphism when it is available but not require it, it is split into the following primary modules:
     .
         - @/Type.Eq/@: Types and combinators which can be kind-polymorphic if @PolyKinds@ are available, but are specific to kind @*@ otherwise.
     .
@@ -39,6 +41,8 @@ description:
         - <http://hackage.haskell.org/package/dependent-sum>
     .
         - <http://hackage.haskell.org/package/categories> (@Data.Category.Discrete@)
+
+extra-source-files: macros.h
 
 source-repository head
     type:      git
@@ -71,7 +75,7 @@ library
 --        cpp-options: -DHAVE_TYPEABLE
 --        other-extensions: DeriveDataTypeable
 
--- Ran into dependency problems with 6.10 and didn't feel like dealing with it
+-- Ran into dependency problems with 6.10 and 6.12 and didn't feel like dealing with it
     if impl(ghc >= 7.0)
         cpp-options: -DHAVE_DEPENDENCIES
         build-depends:
@@ -85,9 +89,9 @@ library
     if impl(ghc >= 7.2)
         other-extensions: Trustworthy
 
-    if impl(ghc >= 7.6)
-        exposed-modules:  Type.Eq.Poly
-        other-extensions: PolyKinds, Unsafe
+--    if impl(ghc >= 7.6)
+--        exposed-modules:  Type.Eq.Poly
+--        other-extensions: PolyKinds, Unsafe
 
     include-dirs: .
 
