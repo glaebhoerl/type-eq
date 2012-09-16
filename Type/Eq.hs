@@ -45,7 +45,7 @@ instance Typeable2 (:~:) where
 
 -- | Unpack equality evidence and use it.
 -- 
---   This function compiles with GHC 6.10, but doesn't work. Beware!
+--   This function compiles with GHC 6.10, but doesn't work.
 withEq :: (a ~ b => r) -> (a :~: b) -> r
 withEq x Eq = x
 -- This doesn't seem to work in 6.10, so for compatibility, we're not going to use it
@@ -99,13 +99,13 @@ data InnerEq i a where
 
 -- | Unpack partial equality evidence and use it.
 --
---   This function compiles with GHC 6.10, but doesn't work. Beware!
+--   This function compiles with GHC 6.10, but doesn't work.
 withOuterEq :: (forall i. f i ~ a => r) -> OuterEq f a -> r
 withOuterEq x OuterEq = x
 
 -- | Unpack partial equality evidence and use it.
 --
---   This function compiles with GHC 6.10, but doesn't work. Beware!
+--   This function compiles with GHC 6.10, but doesn't work.
 withInnerEq :: (forall f. f i ~ a => r) -> InnerEq i a -> r
 withInnerEq x InnerEq = x
 

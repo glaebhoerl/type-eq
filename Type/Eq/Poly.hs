@@ -55,14 +55,28 @@ DYNAMIC_EQ(7,,:~:,x,y,() () () () () () ())
 sameOuterEq :: OuterEq f a -> OuterEq g a -> f :~: g
 sameOuterEq OuterEq OuterEq = BUG_5591(Eq)
 
+-- * Compatibility with Type.Eq.Higher
+
 fromEq1 :: f ::~:: g -> f :~: g
 fromEq1 Eq1 = Eq
+
+toEq1 :: f :~: g -> f ::~:: g
+toEq1 Eq = Eq1
 
 fromEq2 :: n :::~::: m -> n :~: m
 fromEq2 Eq2 = Eq
 
+toEq2 :: n :~: m -> n :::~::: m
+toEq2 Eq = Eq2
+
 fromOuterEq1 :: OuterEq1 m f -> OuterEq m f
 fromOuterEq1 OuterEq1 = BUG_5591(OuterEq)
 
+toOuterEq1 :: OuterEq m f -> OuterEq1 m f
+toOuterEq1 OuterEq = OuterEq1
+
 fromInnerEq1 :: InnerEq1 a f -> InnerEq a f
 fromInnerEq1 InnerEq1 = BUG_5591(InnerEq)
+
+toInnerEq1 :: InnerEq a f -> InnerEq1 a f
+toInnerEq1 InnerEq = InnerEq1
