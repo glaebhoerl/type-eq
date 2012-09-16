@@ -89,7 +89,7 @@ library
 
     if impl(ghc >= 7.6)
         exposed-modules:  Type.Eq.Poly
-        other-extensions: PolyKinds, Unsafe
+--        other-extensions: PolyKinds, Unsafe
 
     include-dirs: .
 
