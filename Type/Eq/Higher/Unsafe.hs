@@ -17,3 +17,11 @@ unsafeCoercion1 = unsafeCoerce Eq1
 -- | Very unsafe! The same rules apply as for 'unsafeCoerce'.
 unsafeCoercion2 :: m :::~::: n
 unsafeCoercion2 = unsafeCoerce Eq2
+
+-- | Very unsafe!
+unsafeOuterEq1 :: OuterEq1 m f
+unsafeOuterEq1 = unsafeCoerce OuterEq1
+
+-- | Very unsafe!
+unsafeInnerEq1 :: InnerEq1 a f
+unsafeInnerEq1 = unsafeCoerce InnerEq1

@@ -38,7 +38,7 @@
 #endif
 
 -- http://hackage.haskell.org/trac/ghc/ticket/5591
-#if (__GLASGOW_HASKELL__ >= 702) && (__GLASGOW_HASKELL__ <= 704)
+#if (__GLASGOW_HASKELL__ >= 702) && (__GLASGOW_HASKELL__ <= 706)
 #   define BUG_5591(X) (unsafeCoerce X)
 #else
 #   define BUG_5591(X) X

@@ -11,3 +11,9 @@ data (f :: * -> *) ::~:: (g :: * -> *) where
 
 data (m :: * -> * -> *) :::~::: (n :: * -> * -> *) where
     Eq2 :: (m ~ n) => m :::~::: n
+
+data OuterEq1 (m :: * -> * -> *) (f :: * -> *) where
+    OuterEq1 :: m a ~ f => OuterEq1 m f
+
+data InnerEq1 (a :: *) (f :: * -> *) where
+    InnerEq1 :: m a ~ f => InnerEq1 a f

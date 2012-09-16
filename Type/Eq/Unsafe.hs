@@ -15,3 +15,11 @@ import Unsafe.Coerce
 -- | Very unsafe! The same rules apply as for 'unsafeCoerce'.
 unsafeCoercion :: a :~: b
 unsafeCoercion = unsafeCoerce Eq
+
+-- | Very unsafe!
+unsafeOuterEq :: OuterEq f a
+unsafeOuterEq = unsafeCoerce OuterEq
+
+-- | Very unsafe!
+unsafeInnerEq :: InnerEq i a
+unsafeInnerEq = unsafeCoerce InnerEq

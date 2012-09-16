@@ -34,7 +34,7 @@ import Unsafe.Coerce
 -- | Evidence that type @a@ is the same as type @b@.
 -- 
 --   The @'Functor'@, @'Applicative'@, and @'Monad'@ instances of @Maybe@
---   are extremely useful for working with values of type @Maybe (a :~: b)@.
+--   are very useful for working with values of type @Maybe (a :~: b)@.
 data a :~: b where
     Eq :: (a ~ b) => a :~: b
 
@@ -138,7 +138,9 @@ DYNAMIC_EQ(,,:~:,a,b,)
 --       - @(\<~>)@, or
 -- 
 --       - both @(~>)@ and @(<~)@.
-class TypeEq t where
+-- 
+--   Due to <http://hackage.haskell.org/trac/ghc/ticket/5591> you may have to use 'unsafeOuterEq' and/or 'unsafeInnerEq' to define some of these.
+class TypeCompare t where
     maybeEq,          (~~)  :: t a     -> t b -> Maybe (a :~: b)
     maybeOuterEq,     (~>)  :: t (f i) -> t a -> Maybe (OuterEq f a)
     maybeInnerEq,     (<~)  :: t (f i) -> t a -> Maybe (InnerEq i a)
@@ -153,21 +155,17 @@ class TypeEq t where
     (<~)  = maybeInnerEq
     (<~>) = piecewiseMaybeEq
 
-instance TypeEq ((:~:) a) where
+instance TypeCompare ((:~:) a) where
     maybeEq      Eq Eq = Just Eq
     maybeOuterEq Eq Eq = Just OuterEq
     maybeInnerEq Eq Eq = Just InnerEq
 
-instance TypeEq (InnerEq i) where
+instance TypeCompare (InnerEq i) where
     maybeEq      _ _ = Nothing
     maybeOuterEq _ _ = Nothing
     maybeInnerEq InnerEq InnerEq = Just BUG_5591(InnerEq)
 
-instance TypeEq (OuterEq f) where
+instance TypeCompare (OuterEq f) where
     maybeEq      _ _ = Nothing
     maybeOuterEq OuterEq OuterEq = Just BUG_5591(OuterEq)
     maybeInnerEq _ _ = Nothing
-
--- TODO
--- fixities
--- other compilers
