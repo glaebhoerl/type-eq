@@ -7,11 +7,11 @@ LANGUAGE_TRUSTWORTHY
 
 {-# OPTIONS_GHC -fno-warn-unused-imports #-}
 
--- | Types and combinators for storing and manipulating type equality evidence.
+-- | Types and functions for storing and manipulating type equality evidence.
 -- 
 --   This module is kind-polymorphic if @PolyKinds@ are available (GHC 7.6+).
 --
---   Notable combinators missing from this module include @applyEq@, @constructorEq@, and @sameOuterEq@.
+--   Notable functions missing from this module include @applyEq@, @constructorEq@, and @sameOuterEq@.
 -- 
 --   See also @"Type.Eq.Higher"@ and @"Type.Eq.Poly"@.
 

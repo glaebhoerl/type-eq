@@ -6,7 +6,7 @@ LANGUAGE_TRUSTWORTHY
 
 {-# OPTIONS_GHC -fno-warn-unused-imports -fno-warn-orphans #-}
 
--- | Kind-polymorphic combinators for manipulating type equality evidence.
+-- | Kind-polymorphic functions for manipulating type equality evidence.
 -- 
 --   This module is available only if @PolyKinds@ are available (GHC 7.6+).
 

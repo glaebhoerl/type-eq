@@ -6,7 +6,7 @@ LANGUAGE_TRUSTWORTHY
 
 {-# OPTIONS_GHC -fno-warn-unused-imports #-}
 
--- |  Types and combinators for storing and manipulating evidence of equality between types of higher kind.
+-- |  Types and functions for storing and manipulating evidence of equality between types of higher kind.
 -- 
 --    Available up to @* -> * -> *@. Yell if you need more.
 
@@ -17,7 +17,7 @@ import Type.Eq
 import Type.Eq.Higher.Unsafe
 import Unsafe.Coerce
 
--- * Additional combinators, kind @*@
+-- * Additional functions, kind @*@
 
 -- | Type constructors are generative
 constructorEq :: f a :~: g b -> f ::~:: g

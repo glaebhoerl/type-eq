@@ -12,13 +12,13 @@ cabal-version: >= 1.10
 build-type:    Simple
 synopsis:      Type equality evidence you can carry around
 description:
-    This package provides types and combinators to store and manipulate evidence of equality between types.
+    This package provides types and functions to store and manipulate evidence of equality between types.
     .
     To take advantage of kind polymorphism when it is available but not require it, it is split into the following primary modules:
     .
-        - @/Type.Eq/@: Types and combinators which can be kind-polymorphic if @PolyKinds@ are available, but are specific to kind @*@ otherwise.
+        - @/Type.Eq/@: Types and functions which can be kind-polymorphic if @PolyKinds@ are available, but are specific to kind @*@ otherwise.
     .
-        - @/Type.Eq.Higher/@: Kind-monomorphic types and combinators of higher kind, up to @* -> * -> *@.
+        - @/Type.Eq.Higher/@: Kind-monomorphic types and functions of higher kind, up to @* -> * -> *@.
     .
         - @/Type.Eq.Poly/@: Combinators that require kind polymorphism. This module is only available if @PolyKinds@ are available.
     .
