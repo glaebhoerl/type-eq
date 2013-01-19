@@ -73,14 +73,13 @@ library
 --        cpp-options: -DHAVE_TYPEABLE
 --        other-extensions: DeriveDataTypeable
 
--- Ran into dependency problems with 6.10 and 6.12 and didn't feel like dealing with it
-    if impl(ghc >= 7.0)
-        cpp-options: -DHAVE_DEPENDENCIES
-        build-depends:
+--    if impl(ghc >= 7.0)
+--        cpp-options: -DHAVE_DEPENDENCIES
+--        build-depends:
 -- Semigroupoid
-            semigroupoids >= 1.0 && < 3.1,
+--            semigroupoids >= 1.0 && < 3.1,
 -- Groupoid
-            groupoids     >= 0.1 && < 3.1
+--            groupoids     >= 0.1 && < 3.1
 -- Tensor
 --            data-lens     >= 2.9 && < 2.11
 
