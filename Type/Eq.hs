@@ -19,11 +19,9 @@ module Type.Eq where
 
 import Control.Category         (Category(..))
 import Control.Applicative      (Applicative) -- for haddock
-#ifdef HAVE_DEPENDENCIES
 --import Control.Category.Product (Tensor(..))
-import Data.Groupoid            (Groupoid(..))
-import Data.Semigroupoid        (Semigroupoid(..))
-#endif
+--import Data.Groupoid            (Groupoid(..))
+--import Data.Semigroupoid        (Semigroupoid(..))
 import Data.Typeable     hiding (cast)
 import Type.Eq.Unsafe
 import Prelude           hiding ((.))
@@ -31,13 +29,14 @@ import Unsafe.Coerce
 
 -- * Full equality
 
--- | Evidence that type @a@ is the same as type @b@.
+-- | Evidence that @a@ is the same type as @b@.
 -- 
 --   The @'Functor'@, @'Applicative'@, and @'Monad'@ instances of @Maybe@
 --   are very useful for working with values of type @Maybe (a :~: b)@.
 data a :~: b where
     Eq :: (a ~ b) => a :~: b
 
+-- FIXME ifdef this for 7.8
 -- deriving Typeable and PolyKinds don't play well
 instance Typeable2 (:~:) where
     typeOf2 = const $ mkTyConApp tyCon []
@@ -48,23 +47,22 @@ instance Typeable2 (:~:) where
 --   This function compiles with GHC 6.10, but doesn't work.
 withEq :: (a ~ b => r) -> (a :~: b) -> r
 withEq x Eq = x
--- This doesn't seem to work in 6.10, so for compatibility, we're not going to use it
+-- for compatibility, we're not going to use it either
 
 instance Category (:~:) where
     id  = idEq
     (.) = composeEq
 
-#ifdef HAVE_DEPENDENCIES
+{-
 instance Semigroupoid (:~:) where
     o = composeEq
 
 instance Groupoid (:~:) where
     inv = flipEq
-#endif
 
--- would require a dependency on data-lens
--- instance Tensor (:~:) where
---  a *** b = idEq2 ||$|| a |$| b
+instance Tensor (:~:) where
+    a *** b = idEq2 ||$|| a |$| b
+-}
 
 -- | Reflexivity
 idEq :: a :~: a
@@ -124,6 +122,9 @@ sameInnerEq InnerEq InnerEq = BUG_5591(Eq)
 -- * Testing for equality
 
 DYNAMIC_EQ(,,:~:,a,b,)
+
+--dynamicInnerEq :: (Typeable (f i), Typeable a) => Maybe (InnerEq i a)
+--dynamicOuterEq :: (Tyepable (f i), Typeable a) => Maybe (OuterEq f a)
 
 -- | Can be implemented by types storing evidence of type equalities, i.e. GADTs.
 -- 
