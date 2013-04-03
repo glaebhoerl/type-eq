@@ -121,10 +121,14 @@ sameInnerEq InnerEq InnerEq = BUG_5591(Eq)
 
 -- * Testing for equality
 
-DYNAMIC_EQ(,,:~:,a,b,)
+dynamicEq :: (Typeable a, Typeable b) => Maybe (a :~: b)
+dynamicEq = gcast idEq
 
 --dynamicInnerEq :: (Typeable (f i), Typeable a) => Maybe (InnerEq i a)
 --dynamicOuterEq :: (Tyepable (f i), Typeable a) => Maybe (OuterEq f a)
+
+--data Type a where
+--    Type :: Typeable a => Type a
 
 -- | Can be implemented by types storing evidence of type equalities, i.e. GADTs.
 -- 
