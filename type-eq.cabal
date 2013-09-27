@@ -1,6 +1,6 @@
 name:          type-eq
 category:      Type System
-version:       0.2
+version:       0.3
 author:        Gábor Lehel
 maintainer:    Gábor Lehel <illissius@gmail.com>
 homepage:      http://github.com/glehel/type-eq
