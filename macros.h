@@ -38,7 +38,8 @@
 #endif
 
 -- http://hackage.haskell.org/trac/ghc/ticket/5591
-#if (__GLASGOW_HASKELL__ >= 702) && (__GLASGOW_HASKELL__ <= 706)
+-- should be fixed in 7.8, but still having problems! TODO look into this later
+#if (__GLASGOW_HASKELL__ >= 702) && (__GLASGOW_HASKELL__ <= 708)
 #   define BUG_5591(X) (unsafeCoerce X)
 #else
 #   define BUG_5591(X) X
@@ -60,6 +61,14 @@
 #   define LANGUAGE_POLYKINDS {-# LANGUAGE PolyKinds #-}
 #else
 #   define LANGUAGE_POLYKINDS
+#endif
+
+#if (__GLASGOW_HASKELL__ >= 707)
+#   define LANGUAGE_AUTODERIVETYPEABLE  {-# LANGUAGE AutoDeriveTypeable  #-}
+#   define LANGUAGE_ALLOWAMBIGUOUSTYPES {-# LANGUAGE AllowAmbiguousTypes #-}
+#else
+#   define LANGUAGE_AUTODERIVETYPEABLE
+#   define LANGUAGE_ALLOWAMBIGUOUSTYPES
 #endif
 
 #endif

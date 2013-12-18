@@ -1,0 +1,4 @@
+- look into and/or resolve issues with InnerEq and OuterEq:
+-- allegedly ambiguous types
+-- incorrect inferred kinds
+-- maybeInner/OuterEq not typechecking without unsafeCoerce hack, even though they should

@@ -3,6 +3,8 @@
 #include "macros.h"
 
 LANGUAGE_POLYKINDS
+LANGUAGE_AUTODERIVETYPEABLE
+LANGUAGE_ALLOWAMBIGUOUSTYPES 
 LANGUAGE_TRUSTWORTHY
 
 {-# OPTIONS_GHC -fno-warn-unused-imports #-}
@@ -22,7 +24,15 @@ import Control.Applicative      (Applicative) -- for haddock
 --import Control.Category.Product (Tensor(..))
 --import Data.Groupoid            (Groupoid(..))
 --import Data.Semigroupoid        (Semigroupoid(..))
-import Data.Typeable     hiding (cast)
+import Data.Typeable     (Typeable, gcast)
+#if !(MIN_VERSION_base(4, 7, 0))
+import Data.Typeable     (Typeable2, typeOf2, mkTyConApp)
+#endif
+#if MIN_VERSION_base(4, 4, 0)
+import Data.Typeable     (mkTyCon3)
+#else
+import Data.Typeable     (mkTyCon)
+#endif
 import Type.Eq.Unsafe
 import Prelude           hiding ((.))
 import Unsafe.Coerce
@@ -35,12 +45,12 @@ import Unsafe.Coerce
 --   are very useful for working with values of type @Maybe (a :~: b)@.
 data a :~: b where
     Eq :: (a ~ b) => a :~: b
-
--- FIXME ifdef this for 7.8
+#if !(MIN_VERSION_base(4, 7, 0))
 -- deriving Typeable and PolyKinds don't play well
 instance Typeable2 (:~:) where
     typeOf2 = const $ mkTyConApp tyCon []
         where tyCon = MK_TY_CON("Type.Eq",":~:")
+#endif
 
 -- | Unpack equality evidence and use it.
 -- 
