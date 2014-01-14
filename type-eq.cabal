@@ -68,6 +68,9 @@ library
         Type.Eq.Higher
         Type.Eq.Higher.Unsafe
 
+    ghc-options: -pgmPcpphs -optP--cpp
+    build-tools: cpphs
+
 -- DeriveDataTypeable and PolyKinds sadly don't mix
 --    if impl(ghc)
 --        cpp-options: -DHAVE_TYPEABLE
