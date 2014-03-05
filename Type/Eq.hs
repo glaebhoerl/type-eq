@@ -25,10 +25,10 @@ import Control.Applicative      (Applicative) -- for haddock
 --import Data.Groupoid            (Groupoid(..))
 --import Data.Semigroupoid        (Semigroupoid(..))
 import Data.Typeable     (Typeable, gcast)
-#if !(MIN_VERSION_base(4, 7, 0))
+#if __GLASGOW_HASKELL__ < 707
 import Data.Typeable     (Typeable2, typeOf2, mkTyConApp)
 #endif
-#if MIN_VERSION_base(4, 4, 0)
+#if __GLASGOW_HASKELL__ >= 701
 import Data.Typeable     (mkTyCon3)
 #else
 import Data.Typeable     (mkTyCon)
@@ -45,7 +45,7 @@ import Unsafe.Coerce
 --   are very useful for working with values of type @Maybe (a :~: b)@.
 data a :~: b where
     Eq :: (a ~ b) => a :~: b
-#if !(MIN_VERSION_base(4, 7, 0))
+#if __GLASGOW_HASKELL__ < 707
 -- deriving Typeable and PolyKinds don't play well
 instance Typeable2 (:~:) where
     typeOf2 = const $ mkTyConApp tyCon []

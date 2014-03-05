@@ -19,7 +19,7 @@ module Type.Eq.Poly (module Type.Eq, module Type.Eq.Poly) where
 
 import Control.Applicative ((<$>))
 import Control.Category ((.)) -- for haddock
-#if MIN_VERSION_base(4,7,0)
+#if __GLASGOW_HASKELL__ >= 707
 import Data.OldTypeable hiding (cast)
 #else
 import Data.Typeable hiding (cast)

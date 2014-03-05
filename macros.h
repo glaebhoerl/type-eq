@@ -31,7 +31,11 @@
                 type2 = const undefined;                                                             \
             }
 
-#if MIN_VERSION_base(4,4,0)
+#ifndef __GLASGOW_HASKELL__
+#   error "GHC is required"
+#endif
+
+#if __GLASGOW_HASKELL__ >= 701
 #   define MK_TY_CON(MOD, CON) mkTyCon3 "type-eq" MOD CON
 #else
 #   define MK_TY_CON(MOD, CON) mkTyCon ("type-eq::" ++ MOD ++ "." ++ CON)
@@ -39,25 +43,25 @@
 
 -- http://hackage.haskell.org/trac/ghc/ticket/5591
 -- should be fixed in 7.8, but still having problems! TODO look into this later
-#if (__GLASGOW_HASKELL__ >= 702) && (__GLASGOW_HASKELL__ <= 708)
+#if (__GLASGOW_HASKELL__ >= 701)
 #   define BUG_5591(X) (unsafeCoerce X)
 #else
 #   define BUG_5591(X) X
 #endif
 
-#if (__GLASGOW_HASKELL__ >= 702)
+#if (__GLASGOW_HASKELL__ >= 701)
 #   define LANGUAGE_TRUSTWORTHY {-# LANGUAGE Trustworthy #-}
 #else
 #   define LANGUAGE_TRUSTWORTHY
 #endif
 
-#if (__GLASGOW_HASKELL__ >= 704)
+#if (__GLASGOW_HASKELL__ >= 703)
 #   define LANGUAGE_UNSAFE    {-# LANGUAGE Unsafe #-}
 #else
 #   define LANGUAGE_UNSAFE
 #endif
 
-#if (__GLASGOW_HASKELL__ >= 706)
+#if (__GLASGOW_HASKELL__ >= 705)
 #   define LANGUAGE_POLYKINDS {-# LANGUAGE PolyKinds #-}
 #else
 #   define LANGUAGE_POLYKINDS

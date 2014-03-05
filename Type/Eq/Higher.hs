@@ -14,7 +14,7 @@ LANGUAGE_TRUSTWORTHY
 
 module Type.Eq.Higher (module Type.Eq, module Type.Eq.Higher) where
 
-#if MIN_VERSION_base(4,7,0)
+#if __GLASGOW_HASKELL__ >= 707
 import Data.OldTypeable hiding (cast)
 #else
 import Data.Typeable hiding (cast)
