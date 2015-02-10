@@ -1,6 +1,6 @@
 name:          type-eq
 category:      Type System
-version:       0.4.2
+version:       0.5
 author:        Gábor Lehel
 maintainer:    Gábor Lehel <glaebhoerl@gmail.com>
 homepage:      http://github.com/glaebhoerl/type-eq
@@ -97,3 +97,4 @@ library
 
     ghc-options:
         -Wall
+

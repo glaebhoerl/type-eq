@@ -10,10 +10,6 @@ LANGUAGE_AUTODERIVETYPEABLE
 -- | Kind-polymorphic functions for manipulating type equality evidence.
 -- 
 --   This module is available only if @PolyKinds@ are available (GHC 7.6+).
--- 
---   In GHC 7.8, this module uses @Data.OldTypeable@. Future uncertain.
--- 
---   For kind-polymorphic @Data.Typeable@, use 'dynamicEq' from the "Type.Eq" module.
 
 module Type.Eq.Poly (module Type.Eq, module Type.Eq.Poly) where
 

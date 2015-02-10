@@ -9,8 +9,6 @@ LANGUAGE_TRUSTWORTHY
 -- |  Types and functions for storing and manipulating evidence of equality between types of higher kind.
 -- 
 --    Available up to @* -> * -> *@. Yell if you need more.
--- 
---    In GHC 7.8, this module uses @Data.OldTypeable@. Future uncertain.
 
 module Type.Eq.Higher (module Type.Eq, module Type.Eq.Higher) where
 
