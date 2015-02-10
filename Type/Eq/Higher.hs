@@ -14,11 +14,7 @@ LANGUAGE_TRUSTWORTHY
 
 module Type.Eq.Higher (module Type.Eq, module Type.Eq.Higher) where
 
-#if __GLASGOW_HASKELL__ >= 707
-import Data.OldTypeable hiding (cast)
-#else
-import Data.Typeable hiding (cast)
-#endif
+import Data.Typeable (Typeable1, typeOf1, Typeable2, typeOf2)
 import Type.Eq
 import Type.Eq.Higher.Unsafe
 import Unsafe.Coerce

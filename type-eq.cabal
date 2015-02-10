@@ -60,7 +60,7 @@ library
         FlexibleContexts
 
     build-depends:
-        base >= 3.0 && < 4.8
+        base >= 3.0 && < 4.9
 
     exposed-modules:
         Type.Eq
