@@ -19,11 +19,7 @@ module Type.Eq.Poly (module Type.Eq, module Type.Eq.Poly) where
 
 import Control.Applicative ((<$>))
 import Control.Category ((.)) -- for haddock
-#if __GLASGOW_HASKELL__ >= 707
-import Data.OldTypeable hiding (cast)
-#else
-import Data.Typeable hiding (cast)
-#endif
+import Data.Typeable (Typeable1, typeOf1, Typeable2, typeOf2, Typeable3, typeOf3, Typeable4, typeOf4, Typeable5, typeOf5, Typeable6, typeOf6, Typeable7, typeOf7)
 import Type.Eq
 import Type.Eq.Higher ((::~::)(..), (:::~:::)(..), OuterEq1(..), InnerEq1(..))
 import Type.Eq.Unsafe
